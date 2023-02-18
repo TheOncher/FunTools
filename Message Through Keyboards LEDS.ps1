@@ -20,12 +20,12 @@ function Reset-LEDS {
 
 # Getting Users Attention
 function Blink-LEDS {
-    Start-Sleep -Seconds 0.5
-    for ($i = 0; $i -lt ($BlinkTime * 10) ; $i++) {
+    Start-Sleep -Seconds 1
+    for ($i = 0; $i -lt ($BlinkTime * 6) ; $i++) {
         $keyboard.SendKeys("{NUMLOCK}")
         $keyboard.SendKeys("{CAPSLOCK}")
         $keyboard.SendKeys("{SCROLLLOCK}")
-        Start-Sleep(0.1)
+        Start-Sleep -Seconds 0.55
     }
     # Safety mechanism
     Reset-LEDS
@@ -35,10 +35,11 @@ function Blink-LEDS {
 # End of letter blinking
 function EndLetter-LEDS{
     Reset-LEDS
+    Start-Sleep -Seconds 0.55
     for ($i = 0; $i -lt 4; $i++){
-        $keyboard.SendKeys("{NUMLOCK}"); Start-Sleep -Seconds 0.3
-        $keyboard.SendKeys("{CAPSLOCK}"); Start-Sleep -Seconds 0.3
-        $keyboard.SendKeys("{SCROLLLOCK}"); Start-Sleep -Seconds 0.3
+        $keyboard.SendKeys("{NUMLOCK}"); Start-Sleep -Seconds 0.55
+        $keyboard.SendKeys("{CAPSLOCK}"); Start-Sleep -Seconds 0.55
+        $keyboard.SendKeys("{SCROLLLOCK}"); Start-Sleep -Seconds 0.55
     }
     Reset-LEDS
 }
@@ -88,9 +89,9 @@ for ($i = 0; $i -lt $Sentence.Length; $i++)
         { $keyboard.SendKeys("{SCROLLLOCK}"); $NotZero = $False }
 
         if ($IsZero -eq $True) {Start-Sleep -Seconds 1}
-        Start-Sleep -Seconds 0.5
+        Start-Sleep -Seconds 0.55
         Reset-LEDS
-        Start-Sleep -Seconds 0.5
+        Start-Sleep -Seconds 0.55
     }
 }
 EndLetter-LEDS
